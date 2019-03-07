@@ -3,7 +3,13 @@ import { TrialService } from '../trial.service';
 import { User } from '../_models';
 import { UserService } from '../_services';
 import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
+import { Observable } from 'rxjs';
+
+import { map } from 'rxjs/operators';
+
 const URL ="http://192.168.43.42:8081/SocialNetworking/rest/node/add";
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,28 +17,33 @@ const URL ="http://192.168.43.42:8081/SocialNetworking/rest/node/add";
 })
 
 export class HomeComponent implements OnInit {
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+  uploadState: Observable<string>;
+  uploadProgress: Observable<number>;
+  downloadURL: Observable<string>;
   name:User;
-  
+  x
   title = 'microblog';
   public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
     
 
   temp1=[];
   temp2=[];
-  constructor(private TrialService:TrialService,private userService: UserService) { 
+  constructor(private TrialService:TrialService,private userService: UserService,private afStorage: AngularFireStorage) { 
     this.name=JSON.parse(sessionStorage.getItem('current')); 
    
   }
-  
+
   ngOnInit() {
   
   
-    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+   // this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
 
-    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-         console.log('ImageUpload:uploaded:', item, status, response);
-         alert('File uploaded successfully');
-     };
+    //this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      //   console.log('ImageUpload:uploaded:', item, status, response);
+        // alert('File uploaded successfully');
+    // };
     this.TrialService.getPost(JSON.parse(sessionStorage.getItem('current')).firstName).subscribe(data=>{
       if(data)
         {
@@ -50,6 +61,20 @@ export class HomeComponent implements OnInit {
         }
  
     })  
+  }
+  upload(event) {
+    const id = Math.random().toString(36).substring(2);
+    
+    //this.id1[this.i]=id;
+    
+    this.ref = this.afStorage.ref(id);
+    this.task = this.ref.put(event.target.files[0]);
+    this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
+    this.uploadProgress = this.task.percentageChanges();
+    //this.downloadURL = this.task.downloadURL();
+    this.task.snapshotChanges().pipe(
+      map(() => this.ref.getDownloadURL().subscribe(xx=>console.log(xx)) ))
+    .subscribe();
   }
   public getUser(username)
   {

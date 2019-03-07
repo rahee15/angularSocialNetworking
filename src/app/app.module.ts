@@ -28,6 +28,8 @@ import {MatIconModule} from '@angular/material/icon';
 import{ FormsModule} from '@angular/forms';
 import { SearchfriendComponent } from './searchfriend/searchfriend.component';
 import { ConvertStringtoBoolPipe } from './convert-stringto-bool.pipe'
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 @NgModule({
   declarations: [
     FileSelectDirective,
@@ -67,7 +69,18 @@ import { ConvertStringtoBoolPipe } from './convert-stringto-bool.pipe'
     MatCardModule,
     CommonModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyBKIp_iMnqSx9q8KU3SSyOPmNiIRa8iikg",
+      authDomain: "upload-1a488.firebaseapp.com",
+      databaseURL: "https://upload-1a488.firebaseio.com",
+      projectId: "upload-1a488",
+      storageBucket: "upload-1a488.appspot.com",
+      messagingSenderId: "616815282609"
+  
+
+      }),
+      AngularFireStorageModule
   ],
   providers: [
     AuthGuard,
