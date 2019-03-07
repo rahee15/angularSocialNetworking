@@ -1,0 +1,7 @@
+<table *ngFor="let ob1 of temp2 ; index as i" colspan="2">
+<tr>
+ <td> {{ob1.name | stripdoublequotes }}</td>
+ <td> <button #btn{{i}} id="{{'name'+i}}"  (click)="managefriend(ob1.name,i)">Remove Friend</button></td>
+ <td></td>
+</tr>
+</table>

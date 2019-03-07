@@ -1,0 +1,119 @@
+
+ <!DOCTYPE html>
+<html>
+   <head>
+      <title>The Materialize Grids Example</title>
+      <meta name = "viewport" content = "width = device-width, initial-scale = 1">      
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel = "stylesheet"
+         href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel = "stylesheet"
+         href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+      <script type = "text/javascript"
+         src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+      <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
+      
+      </script>             
+   </head>
+   
+   <body>
+     
+            <app-navbar></app-navbar> 
+             <div >
+             <mat-sidenav-container class="example-container side" style="width:100%;margin-left: 2%;margin-right: 2%"   >
+              <mat-sidenav mode="side" opened style="width:25%">
+                  <mat-card class="example-card" style="width:90%;margin-left: 1%">
+                      <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>Shiba Inu this is it</mat-card-title>
+                        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                      </mat-card-header>
+                      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                      <mat-card-content>
+                        <p>
+                          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                          bred for hunting.
+                        </p>
+                      </mat-card-content>
+                      <mat-card-actions style="margin-top:5%">
+                          <button mat-button style="margin-left:35%">FOLLOW</button>
+                          
+                        </mat-card-actions>
+                    </mat-card>   
+                   
+              </mat-sidenav>
+             
+             
+             
+             
+             
+             
+             
+             
+              <mat-sidenav-content >
+                  <mat-card class="example-card"  style="width:50%;height:10%;margin-left:5%;margin-right:5%;" >
+                        <b>Create Post</b>
+                        <br>
+                        <input type="text" placeholder="Whats on your mind,{{ name.firstName }} ? ">
+                        <br>
+                        <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+
+                      
+                      
+                      <mat-card-actions>
+                          <button mat-button class="btn btn-success btn-s" 
+                          (click)="uploader.uploadAll()" 
+                          [disabled]="!uploader.getNotUploadedItems().length">Post</button>
+                          <button mat-button>Cancel</button>
+                        </mat-card-actions>
+                     
+                    </mat-card>
+                    <br>
+                    
+
+
+
+
+
+                  <mat-card class="example-card" *ngFor="let ob1 of temp2" style="width:50%;margin-left:5%;margin-right:5%;" >
+                      <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>
+                            {{ob1.name | stripdoublequotes }}
+                          </mat-card-title>
+                        <mat-card-subtitle>
+                            Heading   {{ob1.heading | stripdoublequotes }}
+                        </mat-card-subtitle>
+                      </mat-card-header>
+                      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                      
+                      <mat-card-content>
+                          <p>
+                            Descripition
+                            {{ob1.summary | stripdoublequotes }}
+                          </p>
+                          <p>
+                          Likes {{ ob1.nooflikes }}
+                          </p>
+                      </mat-card-content>
+                      <mat-card-actions>
+                        <button [ngClass]="{'highlight' : ob1.likestatus | convertStringtoBool }" mat-button (click)="addLike(ob1)">LIKE</button>
+                        <button mat-button >{{ob1.likestatus}}</button>
+                      </mat-card-actions>
+                    </mat-card>
+                
+                
+                
+                
+                
+                
+                
+                
+               
+              
+              </mat-sidenav-content>
+            </mat-sidenav-container>
+          </div>
+   </body>
+</html> 
