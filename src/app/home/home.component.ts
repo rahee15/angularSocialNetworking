@@ -62,13 +62,18 @@ export class HomeComponent implements OnInit {
  
     })  
   }
-  upload(event) {
+  fileName;
+  saveFile(event)
+  {
+    this.fileName=event.target.files[0];
+  }
+  upload() {
     const id = Math.random().toString(36).substring(2);
     
     //this.id1[this.i]=id;
     
     this.ref = this.afStorage.ref(id);
-    this.task = this.ref.put(event.target.files[0]);
+    this.task = this.ref.put(this.fileName);
     this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
     this.uploadProgress = this.task.percentageChanges();
     //this.downloadURL = this.task.downloadURL();
