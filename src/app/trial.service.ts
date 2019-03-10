@@ -8,19 +8,17 @@ import { JSONP_ERR_WRONG_RESPONSE_TYPE } from '@angular/common/http/src/jsonp';
 export class TrialService {
 
    private _getData="https://ddumicro.herokuapp.com/rest/node/add";
- //  private _getPost="https://ddumicro.herokuapp.com/rest/node/viewAllPost";
- // private _getData="http://192.168.0.107:8080/SocialNetworking/rest/node/add";
-//  private _getPost="http://192.168.43.115:8080/SocialNetworking/rest/node/viewAllPost";
- private _getPost="https://ddumicro.herokuapp.com/rest/node/viewAllPost";
+  private _getPost="https://ddumicro.herokuapp.com/rest/node/viewAllPost";
+//    private _getPost="http://192.168.0.107:8080/SocialNetworking/rest/node/viewAllPost";
+
   private _getFriend="https://ddumicro.herokuapp.com/rest/node/viewAllFriends";
-  //"https://ddumicro.herokuapp.com/rest/node/add";
   private _searchFriend="https://ddumicro.herokuapp.com/rest/node/search";
   private _getPostFriend="https://ddumicro.herokuapp.com/rest/node/searchFriendPost";
+ //private _getPostFriend="http://192.168.0.107:8080/SocialNetworking/rest/node/searchFriendPost";
   private _addLike="https://ddumicro.herokuapp.com/rest/node/addLike";
-//  private _addLike="http://192.168.43.84:8080/SocialNetworking/rest/node/addLike";
-
   private _removeLike="https://ddumicro.herokuapp.com/rest/node/removeLike";
-//  private _removeLike="http://192.168.43.84:8080/SocialNetworking/rest/node/removeLike";
+  private _createPost="https://ddumicro.herokuapp.com/rest/node/createPost";
+  //  private _removeLike="http://192.168.43.84:8080/SocialNetworking/rest/node/removeLike";
 
   constructor(private _http:HttpClient) { }
   getData(uname:string)
@@ -147,5 +145,15 @@ export class TrialService {
     return this._http.post<any>(this._addLike,param2);
     //{name1:uname,name2:"aditya"}
   }
-
+  createPost(uname:string,post:string,imageUrl:string,title:string)
+  {
+      var param2={
+        name1:uname,
+        name2:post,
+        name3:imageUrl,
+        name4:title,
+      }
+      console.log("params 2 is "+param2);
+      return this._http.post<any>(this._createPost,param2);
+  }
 }

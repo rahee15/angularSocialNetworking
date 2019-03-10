@@ -5,8 +5,8 @@ import { UserService } from '../_services';
 import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
 import { Observable } from 'rxjs';
-
-import { map } from 'rxjs/operators';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { map, finalize } from 'rxjs/operators';
 
 const URL ="http://192.168.43.42:8081/SocialNetworking/rest/node/add";
 
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
 
   temp1=[];
   temp2=[];
-  constructor(private TrialService:TrialService,private userService: UserService,private afStorage: AngularFireStorage) { 
+  constructor(private TrialService:TrialService,private userService: UserService,private afStorage: AngularFireStorage,private _sanitizer: DomSanitizer) { 
     this.name=JSON.parse(sessionStorage.getItem('current')); 
    
   }
@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
             let value2=JSON.parse(value1);
             
             this.temp2.push(value2);
-            console.log("name is "+value2.nooflikes);
+            console.log("name is "+value2.imageUrl);
           }
          // console.log("this is trial2 "+(data+" hello "));
           //console.log("this is trial3 "+JSON.parse(this.temp1.toString()));
@@ -67,19 +67,27 @@ export class HomeComponent implements OnInit {
   {
     this.fileName=event.target.files[0];
   }
-  upload() {
+  upload(post,title) {
+    //first upload the image url and then upload the details of the post to neo4j
+
     const id = Math.random().toString(36).substring(2);
-    
-    //this.id1[this.i]=id;
-    
-    this.ref = this.afStorage.ref(id);
+     this.ref = this.afStorage.ref(id);
     this.task = this.ref.put(this.fileName);
-    this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
-    this.uploadProgress = this.task.percentageChanges();
-    //this.downloadURL = this.task.downloadURL();
     this.task.snapshotChanges().pipe(
-      map(() => this.ref.getDownloadURL().subscribe(xx=>console.log(xx)) ))
+      finalize(() => this.ref.getDownloadURL().subscribe(imageUrl=>this.callOnCompletion(imageUrl,post,title) )))
     .subscribe();
+  }
+  callOnCompletion(imageUrl,post,title)
+  {
+    console.log("image url is "+imageUrl);
+    console.log("post is "+post);
+    var name=JSON.parse(sessionStorage.getItem('current')).firstName;
+    this.TrialService.createPost(name,post,imageUrl,title).subscribe(data=>
+      {
+        console.log(data.toString());
+        alert("Posted Succesfully ");
+      })
+
   }
   public getUser(username)
   {
@@ -162,6 +170,11 @@ export class HomeComponent implements OnInit {
    
       })
     }
+  }
+  getBackgroundImage(image)
+  {
+    
+    return this._sanitizer.bypassSecurityTrustStyle(`url(${image})`);
   }
 
 

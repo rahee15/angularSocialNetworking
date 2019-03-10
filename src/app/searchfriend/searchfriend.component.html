@@ -42,7 +42,7 @@
               Heading   {{ob1.heading | stripdoublequotes }}
           </mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <img mat-card-image [src] ="ob1.imageUrl | stripdoublequotes" alt="Photo of a Shiba Inu">
         
         <mat-card-content>
             <p>
