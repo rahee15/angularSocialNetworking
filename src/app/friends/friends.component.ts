@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TrialService } from '../trial.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-friends',
@@ -7,14 +8,25 @@ import { TrialService } from '../trial.service';
   styleUrls: ['./friends.component.css']
 })
 export class FriendsComponent implements OnInit {
-
-  constructor(private TrialService:TrialService) {
+ 
+  constructor(private TrialService:TrialService,private route:Router,private ar:ActivatedRoute) {
  
    }
    temp2=[]
    temp1=[]
+   name
   ngOnInit() {
-    this.TrialService.getFriend("rahi").subscribe(data=>{
+    this.name = this.ar.queryParams.subscribe(param=>{
+      this.name=param["name"];
+      console.log("name is "+this.name);
+      this.displayFriends(this.name);
+    })
+    
+    
+  }
+  displayFriends(name)
+  {
+    this.TrialService.getFriend(name).subscribe(data=>{
       if(data)
         {
           this.temp1=data;

@@ -36,7 +36,7 @@
                      </ul>  
                     <ul class="hide-on-med-and-down right">                    
                         <li><a href="sass.html" class="red-text">{{ name }}</a></li>
-                        <li><a href="badges.html" class="red-text">Freinds</a></li>
+                        <li><a [routerLink]="['managefriends']" [queryParams]="{name:name}" class="red-text">Manage Friends </a></li>
                         <li><a href="collapsible.html" class="red-text">Logout</a></li>
                     </ul>
                 </div>

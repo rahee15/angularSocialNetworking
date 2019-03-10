@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
   name:string;
   constructor(private TrialService:TrialService,private router:Router) {
     
-   }
+   } 
 temp1=[];
 temp2=[];
   ngOnInit() {

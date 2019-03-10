@@ -73,8 +73,8 @@
 
 
 
-
-                  <mat-card class="example-card" *ngFor="let ob1 of temp2" style="width:50%;margin-left:5%;margin-right:5%;" >
+              <div *ngFor="let ob1 of temp2" style="width:50%;margin-left:5%;margin-right:5%;">
+                  <mat-card class="example-card"  >
                       <mat-card-header>
                         <div mat-card-avatar class="example-header-image"></div>
                         <mat-card-title>
@@ -97,9 +97,12 @@
                       </mat-card-content>
                       <mat-card-actions>
                         <button [ngClass]="{'highlight' : ob1.likestatus | convertStringtoBool }" mat-button (click)="addLike(ob1)">LIKE</button>
-                        <button mat-button >{{ob1.likestatus}}</button>
+                        <!-- <button mat-button >{{ob1.likestatus}}</button> -->
                       </mat-card-actions>
                     </mat-card>
+                    <br>
+                    <br>
+              </div>
                 
                 
                 
