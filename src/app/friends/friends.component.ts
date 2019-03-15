@@ -16,11 +16,13 @@ export class FriendsComponent implements OnInit {
    temp1=[]
    name
   ngOnInit() {
-    this.name = this.ar.queryParams.subscribe(param=>{
-      this.name=param["name"];
-      console.log("name is "+this.name);
-      this.displayFriends(this.name);
-    })
+    // this.name = this.ar.queryParams.subscribe(param=>{
+    //   this.name=param["name"];
+    //   console.log("name is "+this.name);
+    //   this.displayFriends(this.name);
+    //})
+    this.name=JSON.parse(sessionStorage.getItem('current'));
+    this.displayFriends(this.name.firstName);
     
     
   }

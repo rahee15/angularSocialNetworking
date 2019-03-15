@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class StripdoublequotesPipe implements PipeTransform {
 
   transform(value: string): string {
-
+   // console.log("value is "+value);
     return value.slice(1,-1);
   }
 

@@ -30,6 +30,7 @@ import { SearchfriendComponent } from './searchfriend/searchfriend.component';
 import { ConvertStringtoBoolPipe } from './convert-stringto-bool.pipe'
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 @NgModule({
   declarations: [
     FileSelectDirective,
@@ -44,6 +45,7 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
     HomepageComponent,
     SearchfriendComponent,
     ConvertStringtoBoolPipe,
+    UserProfileComponent,
   
 
 

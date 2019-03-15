@@ -9,6 +9,7 @@ import { FriendsComponent } from './friends/friends.component';
 
 import { HomepageComponent } from './homepage/homepage.component';
 import { SearchfriendComponent } from './searchfriend/searchfriend.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
@@ -16,6 +17,7 @@ const appRoutes: Routes = [
     {path:'managefriends',component:FriendsComponent},
     {path:'homepage',component:HomepageComponent}, 
     {path:'searchfriend/:name',component:SearchfriendComponent},
+    {path:'userProfile',component:UserProfileComponent},
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];

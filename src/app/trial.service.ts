@@ -9,12 +9,15 @@ export class TrialService {
 
    private _getData="https://ddumicro.herokuapp.com/rest/node/add";
   private _getPost="https://ddumicro.herokuapp.com/rest/node/viewAllPost";
-//    private _getPost="http://192.168.0.107:8080/SocialNetworking/rest/node/viewAllPost";
-
+  private _userProfile="https://ddumicro.herokuapp.com/rest/node/userProfile";
+  private _deletePost="https://ddumicro.herokuapp.com/rest/node/deletePost";
+  //  private _getPost="http://192.168.43.155:8080/SocialNetworking/rest/node/viewAllPost";
+  //  private _userProfile="http://192.168.43.155:8080/SocialNetworking/rest/node/userProfile";
+  //  private _deletePost="http://192.168.43.155:8080/SocialNetworking/rest/node/deletePost";
   private _getFriend="https://ddumicro.herokuapp.com/rest/node/viewAllFriends";
   private _searchFriend="https://ddumicro.herokuapp.com/rest/node/search";
   private _getPostFriend="https://ddumicro.herokuapp.com/rest/node/searchFriendPost";
- //private _getPostFriend="http://192.168.0.107:8080/SocialNetworking/rest/node/searchFriendPost";
+// private _getPostFriend="http://192.168.43.155:8080/SocialNetworking/rest/node/searchFriendPost";
   private _addLike="https://ddumicro.herokuapp.com/rest/node/addLike";
   private _removeLike="https://ddumicro.herokuapp.com/rest/node/removeLike";
   private _createPost="https://ddumicro.herokuapp.com/rest/node/createPost";
@@ -155,5 +158,21 @@ export class TrialService {
       }
       console.log("params 2 is "+param2);
       return this._http.post<any>(this._createPost,param2);
+  }
+  userProfile(uname:string)
+  {
+    var param2={
+      name1:uname,
+    }
+    console.log("params 2 is "+param2);
+    return this._http.post<any>(this._userProfile,param2);
+  }
+  deletePost(id:Number)
+  {
+    var param2={
+      name1:id,
+    }
+    console.log("param 2 is "+param2);
+    return this._http.post<any>(this._deletePost,param2);
   }
 }

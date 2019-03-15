@@ -22,8 +22,8 @@ export class HomeComponent implements OnInit {
   uploadState: Observable<string>;
   uploadProgress: Observable<number>;
   downloadURL: Observable<string>;
-  name:User;
-  x
+  name: any;
+  x: any
   title = 'microblog';
   public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
     

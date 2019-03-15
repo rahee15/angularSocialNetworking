@@ -1,0 +1,59 @@
+<app-navbar></app-navbar> 
+
+<div >
+  <mat-sidenav-container class="example-container side" style="width:100%;margin-left: 2%;margin-right: 2%"   >
+   <mat-sidenav mode="side" opened style="width:25%">
+       <mat-card class="example-card" style="width:90%;margin-left: 1%">
+           <mat-card-header>
+             <div mat-card-avatar class="example-header-image"></div>
+             <mat-card-title>Shiba Inu this is it</mat-card-title>
+             <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+           </mat-card-header>
+           <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+           <mat-card-content>
+             <p>
+               The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+               A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+               bred for hunting.
+             </p>
+           </mat-card-content>
+           <mat-card-actions style="margin-top:5%">
+               <button mat-button style="margin-left:35%">FOLLOW</button>
+               
+             </mat-card-actions>
+         </mat-card>   
+        
+   </mat-sidenav> 
+
+<div *ngFor="let ob1 of temp2" style="width:50%;margin-left:5%;margin-right:5%;">
+  <mat-card class="example-card"  >
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>
+            {{ ob1.name | stripdoublequotes }}
+          </mat-card-title>
+        <mat-card-subtitle>
+            Heading   {{ob1.heading | stripdoublequotes}}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="ob1.imageUrl | stripdoublequotes " alt="Posted Image">
+      
+      <mat-card-content>
+          <p>
+            Descripition
+            {{ob1.summary | stripdoublequotes}}
+          </p>
+          <p>
+          Likes {{ ob1.nooflikes }}
+          </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button class="btn btn-success btn-s" (click)="delete(ob1.id)" >Delete</button>
+      </mat-card-actions>
+
+  </mat-card>
+    
+
+    <br>
+    <br>
+</div>
