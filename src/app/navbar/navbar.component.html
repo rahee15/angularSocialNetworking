@@ -26,11 +26,13 @@
                     </ul>
                     
                      <ul style="margin-left:30.7%;width:20%"> 
-                                <li>            <mat-form-field >
-                           
-                           <input [(ngModel)]="friend" matInput placeholder="Serch a Friend!" class="red-text">
+                     <li>            
+                        <mat-form-field >
+                           <input [(ngModel)]="friend" matInput placeholder="Search a Friend!" class="red-text">
                          </mat-form-field>
-                         <span (click)="search()" style="text-anchor: start"> <mat-icon matSuffix class="red-text" >search</mat-icon></span>        
+                     </li>
+                     <li>    
+                        <span class="change" (click)="search()" style="text-anchor: start"> <mat-icon matSuffix class="red-text" >search</mat-icon></span>        
                      
                         </li> 
                      </ul>  
