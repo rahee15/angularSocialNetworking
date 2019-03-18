@@ -49,15 +49,24 @@ export class FriendsComponent implements OnInit {
   RemoveFriend(x,i,manage)
   {
     console.log("in remove friend "+x);
+    this.TrialService.removeFriend(JSON.parse(sessionStorage.getItem('current')).firstName,x).subscribe(data=>{
+      console.log(data);
+    })
     manage.innerHTML="Add Friend";
   }
   AddFriend(x,i,manage)
   {
+    this.TrialService.sendFriendRequest(JSON.parse(sessionStorage.getItem('current')).firstName,x).subscribe(data=>{
+      console.log(data);
+    })
     console.log("in add friend "+x);
     manage.innerHTML="Friend Request Sent";
   }
   FriendRequestSent(x,i,manage)
   {
+    this.TrialService.removeFriendRequest(JSON.parse(sessionStorage.getItem('current')).firstName,x).subscribe(data=>{
+      console.log(data);
+    })
     console.log("in friend request sent "+x);
     manage.innerHTML="Add Friend";
   }

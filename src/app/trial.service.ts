@@ -22,7 +22,10 @@ export class TrialService {
   private _removeLike="https://ddumicro.herokuapp.com/rest/node/removeLike";
   private _createPost="https://ddumicro.herokuapp.com/rest/node/createPost";
   //  private _removeLike="http://192.168.43.84:8080/SocialNetworking/rest/node/removeLike";
-
+  private _removeFriend="https://ddumicro.herokuapp.com/rest/node/removeFriend";
+  private _removeFriendRequest="https://ddumicro.herokuapp.com/rest/node/removeFriendRequest";
+  private _sendFriendRequest="https://ddumicro.herokuapp.com/rest/node/sendFriendRequest";
+  private _acceptFriendRequest="https://ddumicro.herokuapp.com/rest/node/acceptFriendRequest";
   constructor(private _http:HttpClient) { }
   getData(uname:string)
   {
@@ -174,5 +177,41 @@ export class TrialService {
     }
     console.log("param 2 is "+param2);
     return this._http.post<any>(this._deletePost,param2);
+  }
+  removeFriend(username,friendname)
+  {
+    var param2={
+      name1:username,
+      name2:friendname
+    }
+    console.log("param 2 is "+param2);
+    return this._http.post<any>(this._removeFriend,param2);
+  }
+  sendFriendRequest(username,friendname)
+  {
+    var param2={
+      name1:username,
+      name2:friendname
+    }
+    console.log("param 2 is "+param2);
+    return this._http.post<any>(this._sendFriendRequest,param2);
+  }
+  removeFriendRequest(username,friendname)
+  {
+    var param2={
+      name1:username,
+      name2:friendname
+    }
+    console.log("param 2 is "+param2);
+    return this._http.post<any>(this._removeFriendRequest,param2);
+  }
+  acceptFriendRequest(username,friendname)
+  {
+    var param2={
+      name1:username,
+      name2:friendname
+    }
+    console.log("param 2 is "+param2);
+    return this._http.post<any>(this._acceptFriendRequest,param2);
   }
 }
