@@ -14,6 +14,8 @@ export class FriendsComponent implements OnInit {
    }
    temp2=[]
    temp1=[]
+   temp3=[]
+   temp4=[]
    name
   ngOnInit() {
     // this.name = this.ar.queryParams.subscribe(param=>{
@@ -23,7 +25,7 @@ export class FriendsComponent implements OnInit {
     //})
     this.name=JSON.parse(sessionStorage.getItem('current'));
     this.displayFriends(this.name.firstName);
-    
+    this.displayFriendRequests(this.name.firstName);
     
   }
   displayFriends(name)
@@ -38,6 +40,26 @@ export class FriendsComponent implements OnInit {
             let value2=JSON.parse(value1);
             
             this.temp2.push(value2);
+            console.log("name is in friends component "+value2.name);
+          }
+         // console.log("this is trial2 "+(data+" hello "));
+          //console.log("this is trial3 "+JSON.parse(this.temp1.toString()));
+        }
+ 
+    })
+  }
+  displayFriendRequests(name)
+  {
+    this.TrialService.getFriendRequest(name).subscribe(data=>{
+      if(data)
+        {
+          this.temp3=data;
+          for(var i in data)
+          {
+            let value1=data[i].toString();
+            let value2=JSON.parse(value1);
+            
+            this.temp4.push(value2);
             console.log("name is in friends component "+value2.name);
           }
          // console.log("this is trial2 "+(data+" hello "));
@@ -88,6 +110,15 @@ export class FriendsComponent implements OnInit {
     {
       this.FriendRequestSent(x,i,manage);
     }
+  }
+  AcceptFriendRequest(x,i:Number)
+  {
+    x=x.slice(1,-1);
+    console.log(document.getElementById("name"+i));
+    var manage=document.getElementById("name"+i);
+    this.TrialService.acceptFriendRequest(JSON.parse(sessionStorage.getItem('current')).firstName,x).subscribe(data=>{
+      console.log(data);
+    })
   }
 
 }

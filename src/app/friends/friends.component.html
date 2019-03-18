@@ -1,10 +1,21 @@
 
 <app-navbar></app-navbar>
 
+Current Friends
 <table style="margin:4%">
 <tr *ngFor="let ob1 of temp2 ; index as i">
  <td> {{ob1.name | stripdoublequotes }}</td>
  <td> <button #btn{{i}} id="{{'name'+i}}"  (click)="managefriend(ob1.name,i)">Remove Friend</button></td>
  <td></td>
 </tr>
+</table> 
+
+Friend Requests
+
+<table style="margin:4%">
+    <tr *ngFor="let ob1 of temp4 ; index as i">
+     <td> {{ob1.name | stripdoublequotes }}</td>
+     <td> <button #btn{{i}} id="{{'name'+i}}"  (click)="AcceptFriendRequest(ob1.name,i)">Accept Friend</button></td>
+     <td></td>
+    </tr>
 </table> 
