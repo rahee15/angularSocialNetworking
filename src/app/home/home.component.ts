@@ -140,7 +140,7 @@ export class HomeComponent implements OnInit {
         }
       });
       console.log(x);
-      this.TrialService.removeLike("rahi",ob1.id).subscribe(data=>{
+      this.TrialService.removeLike(JSON.parse(sessionStorage.getItem('current')).firstName,ob1.id).subscribe(data=>{
         if(data)
           {
             console.log(data);
@@ -162,7 +162,7 @@ export class HomeComponent implements OnInit {
         }
       });
       console.log(x);
-      this.TrialService.addLike("rahi",ob1.id).subscribe(data=>{
+      this.TrialService.addLike(JSON.parse(sessionStorage.getItem('current')).firstName,ob1.id).subscribe(data=>{
         if(data)
           {
             console.log(data);

@@ -18,7 +18,11 @@ export class SearchfriendComponent implements OnInit {
   firstParam="";
   constructor(private TrialService:TrialService,private route:Router,private ar:ActivatedRoute) {
      
-     ar.params.subscribe(val=>{
+     
+   }
+   
+  ngOnInit() {
+    this.ar.params.subscribe(val=>{
       this.temp1=[];
       this.temp2=[];
       this.value3="";
@@ -48,10 +52,53 @@ export class SearchfriendComponent implements OnInit {
     })
     
     console.log("constructor of search friend is called");
-   }
+  }
+  public addLike(ob1)
+  {
+    if(ob1.likestatus=="TRUE")
+    {
+      console.log("like status is true in if");
+      var x=this.temp2.find(function(o1){
+        if(o1==ob1)
+        {
+          o1.likestatus="FALSE";
+          var xx=parseInt(o1.nooflikes);
+          xx--;
+          o1.nooflikes=xx.toString();
+          return true;
+        }
+      });
+      console.log(x);
+      this.TrialService.removeLike(JSON.parse(sessionStorage.getItem('current')).firstName,ob1.id).subscribe(data=>{
+        if(data)
+          {
+            console.log(data);
+          }
    
-  ngOnInit() {
-    
+      })
+    }
+    else
+    {
+      console.log("likestatus is false in else");
+      var x=this.temp2.find(function(o1){
+        if(o1==ob1)
+        {
+          o1.likestatus="TRUE";
+          var xx=parseInt(o1.nooflikes);
+          xx++;
+          o1.nooflikes=xx.toString();
+          return true;
+        }
+      });
+      console.log(x);
+      this.TrialService.addLike(JSON.parse(sessionStorage.getItem('current')).firstName,ob1.id).subscribe(data=>{
+        if(data)
+          {
+            console.log(data);
+          }
+   
+      })
+    }
   }
   }
     

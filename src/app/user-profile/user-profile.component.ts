@@ -39,7 +39,7 @@ export class UserProfileComponent implements OnInit {
   {
     console.log("id to be deleted is "+id);
     this.TrialService.deletePost(id).subscribe(data=>{
-      console.log("response is "+data);
+      //console.log("response is "+JSON.parse(data).response);
       var index=0;
       console.log("id is "+id);
       console.log("temp2 is "+this.temp2);
@@ -54,6 +54,7 @@ export class UserProfileComponent implements OnInit {
           }
           index++;
       }
+      window.alert("post deleted");
     })
   }
 
