@@ -30,7 +30,7 @@ export class SearchfriendComponent implements OnInit {
     console.log("search friend component is called"); 
     console.log("parameter is "+this.firstParam.toString());
     this.value3=this.firstParam.toString();
-    this.TrialService.getPostFriend(this.firstParam,JSON.parse(sessionStorage.getItem('current')).firstName).subscribe(data=>{
+    this.TrialService.getPostFriend(this.firstParam,JSON.parse(sessionStorage.getItem('current')).username).subscribe(data=>{
       if(data)
         {
           this.temp1=data;
@@ -69,7 +69,7 @@ export class SearchfriendComponent implements OnInit {
         }
       });
       console.log(x);
-      this.TrialService.removeLike(JSON.parse(sessionStorage.getItem('current')).firstName,ob1.id).subscribe(data=>{
+      this.TrialService.removeLike(JSON.parse(sessionStorage.getItem('current')).username,ob1.id).subscribe(data=>{
         if(data)
           {
             console.log(data);
@@ -91,7 +91,7 @@ export class SearchfriendComponent implements OnInit {
         }
       });
       console.log(x);
-      this.TrialService.addLike(JSON.parse(sessionStorage.getItem('current')).firstName,ob1.id).subscribe(data=>{
+      this.TrialService.addLike(JSON.parse(sessionStorage.getItem('current')).username,ob1.id).subscribe(data=>{
         if(data)
           {
             console.log(data);

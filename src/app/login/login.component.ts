@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
         private authenticationService: AuthenticationService,
        // private alertService: AlertService
        ) {}
- 
+
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
             username: ['', Validators.required],
@@ -30,8 +30,10 @@ export class LoginComponent implements OnInit {
         this.authenticationService.logout();
 
         // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.returnUrl = this.route.snapshot.queryParams['/home'] || '/';
     }
+    temp1=[];
+    temp2=[];
 
     // convenience getter for easy access to form fields
     get f() { return this.loginForm.controls; }
@@ -46,15 +48,25 @@ export class LoginComponent implements OnInit {
 
         this.loading = true;
         this.authenticationService.login(this.f.username.value, this.f.password.value)
-            .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                   // sessionStorage.setItem('current',JSON.stringify(param2.Username));
                    
-                },
-                error => {
-                 //   this.alertService.error(error);
-                    this.loading = false;
+           console.log(data.toString());
+           let value1=data.toString();
+           var xx=JSON.stringify(data);
+            console.log("xx is"+ xx);
+            if(data.loginStatus)
+            {
+                sessionStorage.setItem('current',JSON.stringify(data));
+                console.log(data.username);
+                this.router.navigate(["/home"]);
+            }
+            else
+            {
+                console.log("Incorrect");
+            }
+         
                 });
     }
 }

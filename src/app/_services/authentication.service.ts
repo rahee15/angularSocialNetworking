@@ -4,20 +4,17 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthenticationService {
+    private _checkUser="https://ddumicro.herokuapp.com/rest/node/loginUser";
     constructor(private http: HttpClient) { }
 
     login(username: string, password: string) {
-        return this.http.post<any>(`/users/authenticate`, { username: username, password: password })
-            .pipe(map(user => {
-                // login successful if there's a jwt token in the response
-                if (user && user.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    sessionStorage.setItem('current',JSON.stringify(user));
-                }
-
-                return user;
-            }));
+        var param2={
+            name1:username,
+            name2:password
+      
+          } 
+        return this.http.post<any>(this._checkUser, param2);
+           
     }
 
     logout() {

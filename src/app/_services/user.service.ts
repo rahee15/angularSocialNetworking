@@ -5,6 +5,7 @@ import { User } from '../_models';
 
 @Injectable()
 export class UserService {
+    private _addUser="https://ddumicro.herokuapp.com/rest/node/addUser";
     constructor(private http: HttpClient) { }
 
     getAll() {
@@ -16,7 +17,15 @@ export class UserService {
     }
 
     register(user: User) {
-        return this.http.post(`/users/register`, user);
+        var param2={
+            firstName:user.firstName,
+            lastName:user.lastName,
+            password:user.password,
+            name:user.username
+          }
+          console.log("params 2 is "+param2);
+          return this.http.post<any>(this._addUser,param2);
+      
     }
 
     update(user: User) {

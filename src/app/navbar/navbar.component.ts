@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
 temp1=[];
 temp2=[];
   ngOnInit() {
-    this.name=JSON.parse(sessionStorage.getItem('current')).firstName;
+    this.name=JSON.parse(sessionStorage.getItem('current')).username;
   }
   search():void
   {

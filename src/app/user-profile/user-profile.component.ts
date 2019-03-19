@@ -17,7 +17,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     console.log("ng on init is called ");
 
-    this.TrialService.userProfile(JSON.parse(sessionStorage.getItem('current')).firstName).subscribe(data=>{
+    this.TrialService.userProfile(JSON.parse(sessionStorage.getItem('current')).username).subscribe(data=>{
       if(data)
         {
           this.temp1=data;

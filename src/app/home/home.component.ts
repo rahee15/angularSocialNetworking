@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
       //   console.log('ImageUpload:uploaded:', item, status, response);
         // alert('File uploaded successfully');
     // };
-    this.TrialService.getPost(JSON.parse(sessionStorage.getItem('current')).firstName).subscribe(data=>{
+    this.TrialService.getPost(JSON.parse(sessionStorage.getItem('current')).username).subscribe(data=>{
       if(data)
         {
           this.temp1=data;
@@ -81,7 +81,7 @@ export class HomeComponent implements OnInit {
   {
     console.log("image url is "+imageUrl);
     console.log("post is "+post);
-    var name=JSON.parse(sessionStorage.getItem('current')).firstName;
+    var name=JSON.parse(sessionStorage.getItem('current')).username;
     this.TrialService.createPost(name,post,imageUrl,title).subscribe(data=>
       {
         console.log(data.toString());
@@ -140,7 +140,7 @@ export class HomeComponent implements OnInit {
         }
       });
       console.log(x);
-      this.TrialService.removeLike(JSON.parse(sessionStorage.getItem('current')).firstName,ob1.id).subscribe(data=>{
+      this.TrialService.removeLike(JSON.parse(sessionStorage.getItem('current')).username,ob1.id).subscribe(data=>{
         if(data)
           {
             console.log(data);
@@ -162,7 +162,7 @@ export class HomeComponent implements OnInit {
         }
       });
       console.log(x);
-      this.TrialService.addLike(JSON.parse(sessionStorage.getItem('current')).firstName,ob1.id).subscribe(data=>{
+      this.TrialService.addLike(JSON.parse(sessionStorage.getItem('current')).username,ob1.id).subscribe(data=>{
         if(data)
           {
             console.log(data);

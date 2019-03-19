@@ -18,6 +18,7 @@ const appRoutes: Routes = [
     {path:'homepage',component:HomepageComponent}, 
     {path:'searchfriend/:name',component:SearchfriendComponent},
     {path:'userProfile',component:UserProfileComponent},
+    {path:'home',component:HomeComponent},
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];

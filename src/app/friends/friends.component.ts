@@ -24,8 +24,8 @@ export class FriendsComponent implements OnInit {
     //   this.displayFriends(this.name);
     //})
     this.name=JSON.parse(sessionStorage.getItem('current'));
-    this.displayFriends(this.name.firstName);
-    this.displayFriendRequests(this.name.firstName);
+    this.displayFriends(this.name.username);
+    this.displayFriendRequests(this.name.username);
     
   }
   displayFriends(name)
@@ -72,14 +72,14 @@ export class FriendsComponent implements OnInit {
   RemoveFriend(x,i,manage)
   {
     console.log("in remove friend "+x);
-    this.TrialService.removeFriend(JSON.parse(sessionStorage.getItem('current')).firstName,x).subscribe(data=>{
+    this.TrialService.removeFriend(JSON.parse(sessionStorage.getItem('current')).username,x).subscribe(data=>{
       console.log(data);
     })
     manage.innerHTML="Add Friend";
   }
   AddFriend(x,i,manage)
   {
-    this.TrialService.sendFriendRequest(JSON.parse(sessionStorage.getItem('current')).firstName,x).subscribe(data=>{
+    this.TrialService.sendFriendRequest(JSON.parse(sessionStorage.getItem('current')).username,x).subscribe(data=>{
       console.log(data);
     })
     console.log("in add friend "+x);
@@ -87,7 +87,7 @@ export class FriendsComponent implements OnInit {
   }
   FriendRequestSent(x,i,manage)
   {
-    this.TrialService.removeFriendRequest(JSON.parse(sessionStorage.getItem('current')).firstName,x).subscribe(data=>{
+    this.TrialService.removeFriendRequest(JSON.parse(sessionStorage.getItem('current')).username,x).subscribe(data=>{
       console.log(data);
     })
     console.log("in friend request sent "+x);
@@ -117,7 +117,7 @@ export class FriendsComponent implements OnInit {
     x=x.slice(1,-1);
     console.log(document.getElementById("name"+i));
     var manage=document.getElementById("name"+i);
-    this.TrialService.acceptFriendRequest(JSON.parse(sessionStorage.getItem('current')).firstName,x).subscribe(data=>{
+    this.TrialService.acceptFriendRequest(JSON.parse(sessionStorage.getItem('current')).username,x).subscribe(data=>{
       console.log(data);
     })
     manage.innerHTML="Friends";
