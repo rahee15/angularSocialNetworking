@@ -28,7 +28,7 @@ export class TrialService {
   private _acceptFriendRequest="https://ddumicro.herokuapp.com/rest/node/acceptFriendRequest";
   // private _getFriendRequest="https://ddumicro.herokuapp.com/rest/node/getFriendRequest";
   private _getFriendRequest="https://ddumicro.herokuapp.com/rest/node/getFriendRequest";
-  private _getFriendRequestsSent="http://192.168.43.155:8080/SocialNetworking/rest/node/getFriendRequestsSent";
+  private _getFriendRequestsSent="https://ddumicro.herokuapp.com/rest/node/getFriendRequestsSent";
   constructor(private _http:HttpClient) { }
   getData(uname:string)
   {
