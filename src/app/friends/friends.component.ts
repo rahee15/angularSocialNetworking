@@ -50,6 +50,7 @@ export class FriendsComponent implements OnInit {
   }
   displayFriendRequests(name)
   {
+    console.log("display friend request");
     this.TrialService.getFriendRequest(name).subscribe(data=>{
       if(data)
         {
@@ -60,7 +61,7 @@ export class FriendsComponent implements OnInit {
             let value2=JSON.parse(value1);
             
             this.temp4.push(value2);
-            console.log("name is in friends component "+value2.name);
+            console.log("friend request "+value2.name);
           }
          // console.log("this is trial2 "+(data+" hello "));
           //console.log("this is trial3 "+JSON.parse(this.temp1.toString()));
@@ -119,6 +120,7 @@ export class FriendsComponent implements OnInit {
     this.TrialService.acceptFriendRequest(JSON.parse(sessionStorage.getItem('current')).firstName,x).subscribe(data=>{
       console.log(data);
     })
+    manage.innerHTML="Friends";
   }
 
 }
