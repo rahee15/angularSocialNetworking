@@ -3,19 +3,32 @@
 
 Current Friends
 <table style="margin:4%">
-<tr *ngFor="let ob1 of temp2 ; index as i">
+<tr *ngFor="let ob1 of temp2 ">
  <td> {{ob1.name | stripdoublequotes }}</td>
- <td> <button #btn{{i}} id="{{'name'+i}}"  (click)="managefriend(ob1.name,i)">Remove Friend</button></td>
+ <td> <button #btn id="{{ ob1.name|stripdoublequotes }}"  (click)="managefriend(ob1.name)">Remove Friend</button></td>
+ 
  <td></td>
 </tr>
 </table> 
 
-Friend Requests
+Friend Requests Recieved
 
 <table style="margin:4%">
-    <tr *ngFor="let ob1 of temp4 ; index as i">
+    <tr *ngFor="let ob1 of temp4 ">
      <td> {{ob1.name | stripdoublequotes }}</td>
-     <td> <button #btn{{i}} id="{{'name'+i}}"  (click)="AcceptFriendRequest(ob1.name,i)">Accept Friend</button></td>
+     <td> <button #btn id="{{ ob1.name | stripdoublequotes }}"   (click)="managefriend(ob1.name)">Accept Friend Request</button></td>
+     
+     <td></td>
+    </tr>
+</table> 
+
+Friend Requests Sent
+
+<table style="margin:4%">
+    <tr *ngFor="let ob1 of temp6 ">
+     <td> {{ob1.name | stripdoublequotes }}</td>
+     <td> <button #btn id="{{ ob1.name |stripdoublequotes }}"  (click)="managefriend(ob1.name)">Friend Request Sent</button></td>
+     
      <td></td>
     </tr>
 </table> 

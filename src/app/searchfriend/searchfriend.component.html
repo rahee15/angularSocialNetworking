@@ -1,4 +1,9 @@
 <app-navbar></app-navbar>
+<!-- *ngIf="friendstatus=='TRUE' ; else elseBlock" -->
+<h5 style="margin-left:40% ; color:green "> <b>{{ value3 | uppercase }} </b>
+  &nbsp; <button #btn *ngIf="friendstatus=='FALSE'" (click)="AddFriend(value3,btn)" > ADD FRIEND </button>
+</h5>
+<br>
 <div >
     <mat-sidenav-container class="example-container side" style="width:100%;margin-left: 2%;margin-right: 2%"   >
      <mat-sidenav mode="side" opened style="width:25%">
@@ -30,8 +35,10 @@
     
     
     
+
     
      <mat-sidenav-content >
+        
       <mat-card class="example-card" *ngFor="let ob1 of temp2" style="width:50%;margin-left:5%;margin-right:5%;" >
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>

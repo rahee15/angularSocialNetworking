@@ -16,6 +16,7 @@ export class SearchfriendComponent implements OnInit {
   temp2=[];
   value3="";
   firstParam="";
+  friendstatus;
   constructor(private TrialService:TrialService,private route:Router,private ar:ActivatedRoute) {
      
      
@@ -40,6 +41,7 @@ export class SearchfriendComponent implements OnInit {
             let value2=JSON.parse(value1);
             
             this.temp2.push(value2);
+            this.friendstatus=value2.friendstatus;
             console.log("name is "+value2.nooflikes);
           }
          // console.log("this is trial2 "+(data+" hello "));
@@ -99,6 +101,15 @@ export class SearchfriendComponent implements OnInit {
    
       })
     }
+  }
+  AddFriend(x,manage)
+  {
+    this.TrialService.sendFriendRequest(JSON.parse(sessionStorage.getItem('current')).username,x).subscribe(data=>{
+      console.log(data);
+    })
+    console.log("in add friend "+x);
+    manage.innerHTML="Friend Request Sent";
+    this.friendstatus="TRUE";
   }
   }
     
