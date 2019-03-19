@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TrialService } from '../trial.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,11 +11,19 @@ export class UserProfileComponent implements OnInit {
   name;
   temp1=[];
   temp2=[];
-  constructor(private TrialService:TrialService) { 
+  
+  constructor(private route:Router,private TrialService:TrialService) { 
     this.name=JSON.parse(sessionStorage.getItem('current')); 
   }
 
   ngOnInit() {
+    var session=sessionStorage.getItem('current');
+    if(session==null)
+    {
+      this.route.navigate(['/login']);
+      return;
+    }
+  
     console.log("ng on init is called ");
 
     this.TrialService.userProfile(JSON.parse(sessionStorage.getItem('current')).username).subscribe(data=>{

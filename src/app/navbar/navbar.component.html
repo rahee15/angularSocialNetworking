@@ -39,7 +39,7 @@
                     <ul class="hide-on-med-and-down right">                    
                         <li><a [routerLink]="['/userProfile']" class="red-text">{{ name }}</a></li>
                         <li><a [routerLink]="['/managefriends/']" class="red-text">Manage Friends </a></li>
-                        <li><a href="collapsible.html" class="red-text">Logout</a></li>
+                        <li><a style="cursor: pointer;" (click)="logout()" class="red-text">Logout</a></li>
                     </ul>
                 </div>
               </nav> 

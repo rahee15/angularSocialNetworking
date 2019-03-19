@@ -39,6 +39,11 @@ temp2=[];
         this.router.navigate(["/searchfriend",value3.toString()]);
     })
   }
+  logout()
+  {
+    sessionStorage.removeItem("current");
+    this.router.navigate(['/login']);
+  }
   
 
 }

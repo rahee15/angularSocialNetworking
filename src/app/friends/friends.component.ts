@@ -26,6 +26,12 @@ export class FriendsComponent implements OnInit {
     //   console.log("name is "+this.name);
     //   this.displayFriends(this.name);
     //})
+    var session=sessionStorage.getItem('current');
+    if(session==null)
+    {
+      this.route.navigate(['/login']);
+      return;
+    }
     this.name=JSON.parse(sessionStorage.getItem('current'));
     this.displayFriends(this.name.username);
     this.displayFriendRequests(this.name.username);

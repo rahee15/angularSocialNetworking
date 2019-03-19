@@ -7,6 +7,7 @@ import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask 
 import { Observable } from 'rxjs';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { map, finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 const URL ="http://192.168.43.42:8081/SocialNetworking/rest/node/add";
 
@@ -25,18 +26,24 @@ export class HomeComponent implements OnInit {
   name: any;
   x: any
   title = 'microblog';
+  loading=false;
   public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
     
 
   temp1=[];
   temp2=[];
-  constructor(private TrialService:TrialService,private userService: UserService,private afStorage: AngularFireStorage,private _sanitizer: DomSanitizer) { 
+  constructor(private route:Router,private TrialService:TrialService,private userService: UserService,private afStorage: AngularFireStorage,private _sanitizer: DomSanitizer) { 
     this.name=JSON.parse(sessionStorage.getItem('current')); 
    
   }
 
   ngOnInit() {
-  
+    var session=sessionStorage.getItem('current');
+    if(session==null)
+    {
+      this.route.navigate(['/login']);
+      return;
+    }
   
    // this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
 
@@ -68,6 +75,7 @@ export class HomeComponent implements OnInit {
     this.fileName=event.target.files[0];
   }
   upload(post,title) {
+    this.loading=true;
     //first upload the image url and then upload the details of the post to neo4j
 
     const id = Math.random().toString(36).substring(2);
@@ -86,6 +94,7 @@ export class HomeComponent implements OnInit {
       {
         console.log(data.toString());
         alert("Posted Succesfully ");
+        this.loading=false;
       })
 
   }
