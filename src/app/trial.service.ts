@@ -29,6 +29,8 @@ export class TrialService {
   // private _getFriendRequest="https://ddumicro.herokuapp.com/rest/node/getFriendRequest";
   private _getFriendRequest="https://ddumicro.herokuapp.com/rest/node/getFriendRequest";
   private _getFriendRequestsSent="https://ddumicro.herokuapp.com/rest/node/getFriendRequestsSent";
+  private _getComments="https://ddumicro.herokuapp.com/rest/node/getComments";
+  private _addComment="http://172.20.10.14:8080/SocialNetworking/rest/node/addComment";
   constructor(private _http:HttpClient) { }
   getData(uname:string)
   {
@@ -49,6 +51,17 @@ export class TrialService {
 
     }
     return this._http.post<any>(this._getData,param2);
+    //{name1:uname,name2:"aditya"}
+  }
+  
+  getComments(id:number)
+  {
+    
+    var param2={
+      id:id,
+    }
+    console.log("params 2 is "+param2);
+    return this._http.post<any>(this._getComments,param2);
     //{name1:uname,name2:"aditya"}
   }
   getPost(uname:string)
@@ -232,5 +245,15 @@ export class TrialService {
     }
     console.log("param 2 is "+param2);
     return this._http.post<any>(this._getFriendRequestsSent,param2);
+  }
+  AddComment(username,id,text)
+  {
+    var param2={
+      name1:username,
+      name2:id,
+      name3:text
+    }
+    console.log("param 2 is "+param2);
+    return this._http.post<any>(this._addComment,param2);
   }
 }

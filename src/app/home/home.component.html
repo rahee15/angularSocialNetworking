@@ -100,7 +100,37 @@
                       <mat-card-actions>
                         <button [ngClass]="{'highlight' : ob1.likestatus | convertStringtoBool }" mat-button (click)="addLike(ob1)">LIKE</button>
                         <!-- <button mat-button >{{ob1.likestatus}}</button> -->
+                       <br> 
+                       <br>
+                        Comment ??
+                        <textarea id="txt{{ob1.id}}" placeholder="Add Comment"></textarea>
                       </mat-card-actions>
+                      {{ ob1.id }}
+                      <button type="button" (click)="addComment(ob1.id)">Add Comment</button>
+
+                      <button type="button" (click)="toggleChild(ob1.id)">View Comment</button>
+                      
+                      <div>
+                        
+                          <div *ngIf="showVar" >
+                              <p>hello </p>
+                       <!--    <div *ngFor="let ob2 of temp4">
+                              <mat-card class="example-card">
+                                  <mat-card-header>
+                                      {{ ob2.name }}
+                                  </mat-card-header>
+                                  <mat-card-content>
+                                    <p>
+                                        {{ ob2.comment }}
+                                    </p>
+                                  </mat-card-content>
+                              </mat-card>
+                          </div>
+                          -->
+                        </div>
+                    
+                      </div>
+
                     </mat-card>
                     <br>
                     <br>

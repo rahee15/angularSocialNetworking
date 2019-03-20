@@ -32,10 +32,15 @@ export class HomeComponent implements OnInit {
 
   temp1=[];
   temp2=[];
+  temp3=[];
+  temp4=[];
+  temp5=[];
+  temp6=[];
   constructor(private route:Router,private TrialService:TrialService,private userService: UserService,private afStorage: AngularFireStorage,private _sanitizer: DomSanitizer) { 
     this.name=JSON.parse(sessionStorage.getItem('current')); 
    
   }
+  showVar: boolean = false;
 
   ngOnInit() {
     var session=sessionStorage.getItem('current');
@@ -74,6 +79,26 @@ export class HomeComponent implements OnInit {
   {
     this.fileName=event.target.files[0];
   }
+  toggleChild(id:number){
+    this.showVar = !this.showVar;
+    this.TrialService.getComments(id).subscribe(data=>{
+      if(data)
+        {
+          this.temp5=data;
+          for(var i in data)
+          {
+            let value1=data[i].toString();
+            let value2=JSON.parse(value1);  
+            this.temp6.push(value2);
+            console.log("name is "+value2.imageUrl);
+          }
+         // console.log("this is trial2 "+(data+" hello "));
+          //console.log("this is trial3 "+JSON.parse(this.temp1.toString()));
+        }
+ 
+    })
+}
+
   upload(post,title) {
     this.loading=true;
     //first upload the image url and then upload the details of the post to neo4j
@@ -184,6 +209,28 @@ export class HomeComponent implements OnInit {
   {
     
     return this._sanitizer.bypassSecurityTrustStyle(`url(${image})`);
+  }
+  addComment(id:Number)
+  {
+    console.log("ob1.id is "+id);
+    console.log("txt"+id);
+
+    var manage=(document.getElementById("txt"+id) as HTMLInputElement).value;
+    
+    console.log("inner html is "+manage);
+    this.TrialService.AddComment(JSON.parse(sessionStorage.getItem('current')).username,id,manage).subscribe(data=>{
+      if(data)
+        {
+          this.temp1=data;
+          for(var i in data)
+          {
+            let value=data[i];
+            console.log(value);
+          }
+         //console.log("this is trial3 "+JSON.parse(this.temp1.toString()));
+        }
+ 
+    })
   }
 
 

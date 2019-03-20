@@ -23,6 +23,13 @@ export class SearchfriendComponent implements OnInit {
    }
    
   ngOnInit() {
+    var session=sessionStorage.getItem('current');
+    if(session==null)
+    {
+      this.route.navigate(['/login']);
+      return;
+    }
+  
     this.ar.params.subscribe(val=>{
       this.temp1=[];
       this.temp2=[];
